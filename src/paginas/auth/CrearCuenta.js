@@ -19,79 +19,120 @@ const [usuario, setUsuario]= useState({
         setUsuario({
             ...usuario,
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
     
     useEffect(()=>{
         document.getElementById('Nombre').focus();
     },[])
 
-    const CrearCuenta2 = async () =>{
-        if(password !== confirmar){
-            const msg = "las contraseñas son diferentes";
-            swal({
-                title: 'Error',
-                Text: msg,
-                icon: 'error ',
-                buttons: {
-                    confirm: {
-                        Text: 'ok',
-                        value: 'true',
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
-            });
-        }else if (password.length < 6){
-            const msg = "la contraseña debe ser almenos de 6 caracteres";
-            swal({
-                title: 'Error',
-                Text: msg,
-                icon: 'error ',
-                buttons: {
-                    confirm: {
-                        Text: 'ok',
-                        value: 'true',
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
+    const CrearCuenta= async () =>{
+      const verificarExistenciaUsuario = async (email, nombre) => {
+        try {
+          const response = await APIInvoke.invokeGET(
+            `/usuarios?email=${email}&nombre=${nombre}`
+          );
+      
+          if (response && response.length > 0) {
+            return true; // El usuario ya existe
+          } else {
+            return false; // El usuario no existe
+          }
+        } catch (error) {
+          console.error(error);
+          return false; // Maneja el error si la solicitud falla
+        }
+      };
 
-    }); } else{
+if (password !== confirmar) {
+    const msg = "Las contraseñas no coinciden.";
+    swal({
+    title: "Error",
+    text: msg,
+    icon: "error",
+    buttons: {
+        confirm: {
+        text: "Ok",
+        value: true,
+        visible: true,
+        className: "btn btn-danger",
+        closeModal: true,
+        },
+    },
+    });
+        }else if (password.length < 6) {
+          const msg = "Contraseña demasiado corta (debe ser mayor a 6 caracteres)";
+          swal({
+              title: 'Error',
+              text: msg,
+              icon: 'warning',
+              buttons: {
+                  confirmar:{
+                      text: 'Ok',
+                      value: true,
+                      visible: true,
+                      className: 'btn btn-danger',
+                      closeModal: true
+                  }
+              }
+          }); } else {
+            const usuarioExistente = await verificarExistenciaUsuario(nombre);     
             const data = {
-                nombre: usuario.nombre,
-                email: usuario.email,
-                password: usuario.password
-            }
-            const response = await APIInvoke.invokePOST(`/api/usuarios`, data);
+            nombre: usuario.nombre,
+            email: usuario.email,
+            password: usuario.password,
+            confirmar: usuario.confirmar // Hay que asegurarse que se envie bien al servidor
+            };                                          
+            const response = await APIInvoke.invokePOST(`/Usuarios`, data);
             const mensaje = response.msg;
-
-        }
-
-        /*
-        if (mensaje === 'El usuario ya existe'){
-            const msg = "el usuario ya existe.";
-            swal({
-                title: 'Error',
-                Text: msg,
-                icon: 'error ',
-                buttons: {
-                    confirm: {
-                        Text: 'ok',
-                        value: 'true',
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
-            })
-        }
-            */
-
-}
     
+            if (usuarioExistente) {
+                const msg = 'El usuario ya existe'
+                new swal({
+                    title: 'Error',
+                    text: msg,
+                    icon: 'error',
+                    buttons: {
+                        confirm: {
+                            text: 'Ok',
+                            value: true,
+                            visible: true,
+                            className: 'btn btn-danger',
+                            closeModal: true
+                        }
+                    }
+                });
+            } else {
+                    const msg = "El usuario fue creado correctamente";
+                    swal({
+                    title: "Información",
+                    text: msg,
+                    icon: "success",  
+                    buttons: {
+                        confirm: {
+                        text: "Ok",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-danger",
+                        closeModal: true,
+                            }
+                        }
+                    });
+    
+                    setUsuario({
+                        nombre: "",
+                        email: "",
+                        password: "",
+                        confirmar: "",
+    
+                    })
+                }
+            }
+        }
+
     const onSubmit = (e) =>{
         e.preventDefault()
-        CrearCuenta2();
+        CrearCuenta();
     }
 
     return (

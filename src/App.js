@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // componentes de ruteo
 import Login from "./paginas/auth/login";
 import CrearCuenta from "./paginas/auth/CrearCuenta";
-
+/*import indexUsuario from "./paginas/auth/indexUsuario"*/
 
 function App() {
 
