@@ -4,82 +4,98 @@ import APIInvoke from "../../utils/APIInvoke";
 import swal from 'sweetalert';
 
 const Login = () => {
-  //para redireccionar de un componente a otro
+  //Este método es para redireccionar un componente a otro
   const navigate = useNavigate();
 
-  //definir el estado inicial de las variables
+  //Definir el estado inicial de las variables
   const [usuario, setUsuario] = useState({
-    email: '',
-    password: ''
+      email: '',
+      password: ''
   });
 
   const { email, password } = usuario;
 
   const onChange = (e) => {
-    setUsuario({
-      ...usuario,
-      [e.target.name]: e.target.value
-    });
-  };
-
+      setUsuario({
+          ...usuario,
+          [e.target.name]: e.target.value
+      });
+  }
 
   useEffect(() => {
-    document.getElementById("email").focus();
+      document.getElementById("email").focus();
   }, [])
 
 
-  const iniciarSesion = async()=>{
-    if( password.length <= 6){
-      const msg = "Las contraseñas no pueden tener menos de 6 caractres.";
-    swal({
-    title: "Error",
-    text: msg,
-    icon: "error",
-    buttons: {
-        confirm: {
-        text: "Ok",
-        value: true,
-        visible: true,
-        className: "btn btn-danger",
-        closeModal: true,
-        },
-    },
-    });
-  
-    } else{    
-            const data = {
-            email: usuario.email,
-            password: usuario.password // Hay que asegurarse que se envie bien al db.json
-            };                                          
-            const response = await APIInvoke.invokeGET(`/Usuarios`, data);
-            const mensaje = response.msg;
-           
+  const iniciarSesion = async () => {
+      const verificarExistenciaUsuario = async (email, password) => {
+          try {
+              const response = await APIInvoke.invokeGET(
+                  `/Usuarios?email=${email}&password=${password}`
+              );
+              if (response && response.length > 0) {
+                  return response[0]; // Devuelve el primer usuario que coincide
+              }
+              return null; // El usuario no existe
+          } catch (error) {
+              console.error(error);
+              return null; // Maneja el error si la solicitud falla
+          }
+      };
 
-            if(mensaje === email || mensaje === password){
-              const msg = "usuario o contraseña incorrecto.";
-              swal({
-              title: "Error",
+      if(password.length < 6){
+          const msg = "Contraseña demasiado corta (debe ser mayor a 6 caracteres)";
+          swal({
+          title: "Error",
+          text: msg,
+          icon: "error",
+          buttons: {
+              confirm: {
+              text: "Ok",
+              value: true,
+              visible: true,
+              className: "btn btn-danger",
+              closeModal: true,
+              },
+          },
+          });
+      }else{
+        const usuarioExistente = await verificarExistenciaUsuario(email, password);
+        const response = await APIInvoke.invokeGET(
+            `/Usuarios?email=${email}&password=${password}`
+        );
+
+        if (!usuarioExistente) {
+          const msg = "usuario o contraseña incorrecto.";
+          new swal({
+              title: 'Error',
               text: msg,
-              icon: "error",
+              icon: 'error',
               buttons: {
                   confirm: {
-                  text: "Ok",
-                  value: true,
-                  visible: true,
-                  className: "btn btn-danger",
-                  closeModal: true,
-                  },
-              },
-              });
-            }
+                      text: 'Ok',
+                      value: true,
+                      visible: true,
+                      className: 'btn btn-danger',
+                      closeModal: true
+                  }
+              }
+          });
+      }else {
+        if (usuarioExistente.rol === 'usuario') {
+            navigate("/home");
+        } else {
+            navigate("/");
+        }
     }
+      }
   }
 
-  const onSubmit = (e) =>{
-    e.preventDefault()
-    iniciarSesion()
-   
-}
+
+  const onSubmit = (e) => {
+      e.preventDefault();
+      iniciarSesion();
+  }
   return (
     <div class="hold-transition login-page">
       <div className="login-box">

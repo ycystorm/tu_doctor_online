@@ -10,10 +10,11 @@ const [usuario, setUsuario]= useState({
  nombre:'',
  email:'',
  password:'',
- confirmar:''
+ confirmar:'',
+ rol: 'usuario'
  });
     
- const {nombre, email, password, confirmar} = usuario;
+ const {nombre, email, password, confirmar, rol } = usuario;
     
     const onChange = (e) =>{
         setUsuario({
@@ -81,7 +82,8 @@ if (password !== confirmar) {
             nombre: usuario.nombre,
             email: usuario.email,
             password: usuario.password,
-            confirmar: usuario.confirmar // Hay que asegurarse que se envie bien al servidor
+            confirmar: usuario.confirmar,
+            rol: usuario.rol   // Hay que asegurarse que se envie bien al servidor
             };                                          
             const response = await APIInvoke.invokePOST(`/Usuarios`, data);
             const mensaje = response.msg;
@@ -124,6 +126,7 @@ if (password !== confirmar) {
                         email: "",
                         password: "",
                         confirmar: "",
+                        rol: "usuario"
     
                     })
                 }
@@ -146,7 +149,6 @@ if (password !== confirmar) {
         <div className="card">
           <div className="card-body login-card-body">
             <p className="login-box-msg">Ingresa los datos del usuario</p>
-
             <form onSubmit={onSubmit}>
               <div className="input-group mb-3">
                 <input 
