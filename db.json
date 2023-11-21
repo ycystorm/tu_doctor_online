@@ -23,6 +23,30 @@
       "password": "123456",
       "confirmar": "123456",
       "id": 1
+    },
+    {
+      "nombre": "carlos",
+      "email": "carlo@gmail.com",
+      "password": "123456",
+      "confirmar": "123456",
+      "id": 2
+    },
+    {
+      "email": "jorg@gmail.co",
+      "password": "1263456",
+      "id": 3
+    },
+    {
+      "email": "jorg@gmail.com",
+      "password": "123456789",
+      "id": 4
+    }
+  ],
+  "aut": [
+    {
+      "email": "jorg@gmail.co",
+      "password": "1263456",
+      "id": 1
     }
   ]
 }
