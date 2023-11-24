@@ -7,4 +7,4 @@ comando para ejecutar el proyecto
 ### `npm start`
 
 comando para ejecutar el archivo db,json
-### `npm run star-api`
+### `npm run start-api`

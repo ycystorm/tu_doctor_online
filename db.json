@@ -24,6 +24,14 @@
       "confirmar": "123456",
       "rol": "usuario",
       "id": 1
+    },
+    {
+      "nombre": "johan",
+      "email": "johan@gmail.com",
+      "password": "123456",
+      "confirmar": "123456",
+      "rol": "usuario",
+      "id": 2
     }
   ],
   "aut": [
