@@ -13,9 +13,40 @@
       "postId": 1
     }
   ],
-  "profile": {
-    "name": "typicode"
-  },
+  "citas": [
+    {
+      "doctor": "pedro",
+      "cita": "general",
+      "paciente": "jean carlo",
+      "fecha": "2023/05/05",
+      "estado": "gestionada",
+      "id": 1
+    },
+    {
+      "doctor": "pedro fernandez",
+      "cita": "general",
+      "paciente": "jean carlo quiroga hernandez",
+      "fecha": "2023-11-27",
+      "estado": "pendiente",
+      "id": 2
+    },
+    {
+      "doctor": "pablo picazo",
+      "cita": "optometria",
+      "paciente": "carolina ramirez",
+      "fecha": "2023-12-21",
+      "estado": "pendiente",
+      "id": 3
+    },
+    {
+      "doctor": "jeremiaz",
+      "cita": "psiquiatria",
+      "paciente": "paula zapata",
+      "fecha": "2024-01-09",
+      "estado": "pendiente",
+      "id": 4
+    }
+  ],
   "usuarios": [
     {
       "nombre": "jean carlo",
@@ -32,6 +63,14 @@
       "confirmar": "123456",
       "rol": "usuario",
       "id": 2
+    },
+    {
+      "nombre": "elizabeth",
+      "email": "elizabeth@gmail.com",
+      "password": "123456",
+      "confirmar": "123456",
+      "rol": "administrador",
+      "id": 3
     }
   ],
   "aut": [

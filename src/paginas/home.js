@@ -1,12 +1,18 @@
 import React from "react";
-import Navbar from "../componentes/Navbar";
-import sidebarContainer from "../componentes/Sidebarcontainer";
+import Header from "../componentes/Header";
+import Content from "../componentes/Content";
+import Footer from "../componentes/Footer";
+import Aside from "../componentes/aside";
 
-const Home = () =>{
+
+
+const home = () =>{
     return(
-        <div class="wrapper">
-            <Navbar></Navbar>
-            <sidebarContainer></sidebarContainer>
+        <div >
+           <Header />
+           <Aside></Aside>
+           <Content/>
+           <Footer/>
         
         </div>
         
@@ -14,4 +20,4 @@ const Home = () =>{
     );
 }
 
-export default Home;
+export default home;

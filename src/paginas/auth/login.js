@@ -84,6 +84,8 @@ const Login = () => {
       }else {
         if (usuarioExistente.rol === 'usuario') {
             navigate("/home");
+        } else if(usuarioExistente.rol === 'administrador'){
+          navigate("/menuA")
         } else {
             navigate("/");
         }
