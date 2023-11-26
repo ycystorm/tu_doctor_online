@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import APIInvoke from "../utils/APIInvoke";
+import swal from "sweetalert";
 
 export default function ContentA() {
   const [citas, setcitas] = useState([]);
@@ -23,6 +24,60 @@ export default function ContentA() {
   useEffect(() => {
     cita();
   }, []);
+
+  const eliminarProyecto = async (e, id) => {
+    e.preventDefault();
+    const verificarExistenciaproyecto = async (id) => {
+      try {
+        const response = await APIInvoke.invokeGET(`/citas?id=${id}`);
+        if (response && response.length > 0) {
+          return true; // El usuario ya existe
+        }
+        return false; // El usuario no existe
+      } catch (error) {
+        console.error(error);
+        return false; // Maneja el error si la solicitud falla
+      }
+    };
+
+    const citaexistente = await verificarExistenciaproyecto(id);
+
+    if (citaexistente) {
+      const response = await APIInvoke.invokeDELETE(`/citas/${id}`);
+      const msg = "cita eliminada correctamente";
+      new swal({
+        title: "Informacion",
+        text: msg,
+        icon: "success",
+        buttons: {
+          confirmar: {
+            text: "Ok",
+            value: true,
+            visible: true,
+            className: "btn btn-prymari",
+            closeModal: true,
+          },
+        },
+      });
+      cita();
+    } else {
+      const msg = "La categoria No Pudo Ser Eliminado";
+      new swal({
+        title: "Error",
+        text: msg,
+        icon: "error",
+        buttons: {
+          confirmar: {
+            text: "Ok",
+            value: true,
+            visible: true,
+            className: "btn btn-danger",
+            closeModal: true,
+          },
+        },
+      });
+    }
+  };
 
   return (
     <div classname="content-wrapper">
@@ -67,12 +122,13 @@ export default function ContentA() {
                       <table className="table m-0">
                         <thead>
                           <tr>
-                           <th>id cita</th>
+                            <th>id cita</th>
                             <th>nombre del doctor</th>
                             <th>tipo de cita</th>
                             <th>nombre del paciente</th>
                             <th>fecha de la cita</th>
                             <th>estado de la cita</th>
+                            <th>operadores</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -84,6 +140,14 @@ export default function ContentA() {
                               <td>{item.paciente}</td>
                               <td>{item.fecha}</td>
                               <td>{item.estado}</td>
+                              <td>
+                                <Link
+                                  onClick={(e) => eliminarProyecto(e, item.id)}
+                                  className="btn btn-sm btn-info float-left"
+                                >
+                                  cancelar cita
+                                </Link>
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -91,9 +155,6 @@ export default function ContentA() {
                     </div>
                   </div>
                   <div className="card-footer clearfix">
-                    <Link to={"/EliminarCuenta"} className="btn btn-sm btn-info float-left">
-                      cancelar cita
-                    </Link>
                     <Link
                       to={"/CrearCita"}
                       className="btn btn-sm btn-secondary float-right"

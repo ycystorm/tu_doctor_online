@@ -15,36 +15,28 @@
   ],
   "citas": [
     {
-      "doctor": "pedro",
-      "cita": "general",
-      "paciente": "jean carlo",
-      "fecha": "2023/05/05",
-      "estado": "gestionada",
-      "id": 1
+      "doctor": "pedro fernandez",
+      "cita": "optometria",
+      "paciente": "jean carlo quiroga",
+      "fecha": "2023-11-14",
+      "estado": "pendiente",
+      "id": 7
     },
     {
       "doctor": "pedro fernandez",
-      "cita": "general",
-      "paciente": "jean carlo quiroga hernandez",
-      "fecha": "2023-11-27",
-      "estado": "pendiente",
-      "id": 2
-    },
-    {
-      "doctor": "pablo picazo",
       "cita": "optometria",
-      "paciente": "carolina ramirez",
-      "fecha": "2023-12-21",
+      "paciente": "jean carlo quiroga",
+      "fecha": "2023-11-14",
       "estado": "pendiente",
-      "id": 3
+      "id": 8
     },
     {
-      "doctor": "jeremiaz",
-      "cita": "psiquiatria",
-      "paciente": "paula zapata",
-      "fecha": "2024-01-09",
+      "doctor": "pepe",
+      "cita": "optometria",
+      "paciente": "jean carlo quiroga",
+      "fecha": "2023-11-13",
       "estado": "pendiente",
-      "id": 4
+      "id": 9
     }
   ],
   "usuarios": [
