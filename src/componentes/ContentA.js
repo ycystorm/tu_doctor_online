@@ -4,9 +4,9 @@ import APIInvoke from "../utils/APIInvoke";
 import swal from "sweetalert";
 
 export default function ContentA() {
-  const [citas, setcitas] = useState([]);
-
-  const cita = async () => {
+  const [citas, setcitas] = useState([
+  ]);
+  const citae = async () => {
     try {
       var response = await APIInvoke.invokeGET(`/citas`);
       console.log("Respuesta de la API:", response);
@@ -20,12 +20,12 @@ export default function ContentA() {
       console.error("Error al cargar las citas", error);
     }
   };
-
-  useEffect(() => {
-    cita();
-  }, []);
-
-  const eliminarProyecto = async (e, id) => {
+ 
+  const  casa = "gestionada";
+  
+  const { doctor, cita, paciente, fecha } = citas;
+  //se invoca el id y se hace el proceso de actualizar
+  const actualizarCita = async (e, id) => {
     e.preventDefault();
     const verificarExistenciaproyecto = async (id) => {
       try {
@@ -41,10 +41,13 @@ export default function ContentA() {
     };
 
     const citaexistente = await verificarExistenciaproyecto(id);
-
+    console.log(citaexistente)
     if (citaexistente) {
-      const response = await APIInvoke.invokePUT(`/citas/${id}`);
-      const msg = "cita eliminada correctamente";
+      const response = await APIInvoke.invokePUT(`/citas/${id}`,{ 
+      
+      "estado": "gestionado"
+    });
+      const msg = "la cita se actualizo correcta mente";
       new swal({
         title: "Informacion",
         text: msg,
@@ -59,9 +62,9 @@ export default function ContentA() {
           },
         },
       });
-      cita();
+      citae();
     } else {
-      const msg = "La categoria No Pudo Ser Eliminado";
+      const msg = "La cita  No se  Pudo actualizar";
       new swal({
         title: "Error",
         text: msg,
@@ -77,7 +80,28 @@ export default function ContentA() {
         },
       });
     }
+
   };
+  const citau = async () => {
+    try {
+      var response = await APIInvoke.invokeGET(`/citas`);
+      console.log("Respuesta de la API:", response);
+
+      if (Array.isArray(response) && response.length > 0) {
+        setcitas(response);
+      } else {
+        console.error("La respuesta de la API no contiene citas.");
+      }
+    } catch (error) {
+      console.error("Error al cargar las citas", error);
+    }
+  };
+
+  useEffect(() => {
+    citae();
+    
+  }, []);
+ 
 
   return (
     <div classname="content-wrapper">
@@ -142,7 +166,7 @@ export default function ContentA() {
                               <td>{item.estado}</td>
                               <td>
                                 <Link
-                                  onClick={(e) => eliminarProyecto(e, item.id)}
+                                  onClick={(e) => actualizarCita(e, item.id)}
                                   className="btn btn-sm btn-info float-left"
                                 >
                                   confirmar cita

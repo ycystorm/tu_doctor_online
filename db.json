@@ -15,28 +15,20 @@
   ],
   "citas": [
     {
-      "doctor": "pedro fernandez",
-      "cita": "optometria",
-      "paciente": "jean carlo quiroga",
-      "fecha": "2023-11-14",
-      "estado": "pendiente",
-      "id": 7
-    },
-    {
-      "doctor": "pedro fernandez",
-      "cita": "optometria",
-      "paciente": "jean carlo quiroga",
-      "fecha": "2023-11-14",
-      "estado": "pendiente",
-      "id": 8
-    },
-    {
       "doctor": "pepe",
       "cita": "optometria",
-      "paciente": "jean carlo quiroga",
-      "fecha": "2023-11-13",
-      "estado": "pendiente",
-      "id": 9
+      "paciente": "pepe galindo",
+      "fecha": "2023-11-30",
+      "estado": "gestionado",
+      "id": 2
+    },
+    {
+      "doctor": "luisa",
+      "cita": "optometria",
+      "paciente": "luisa fernanda",
+      "fecha": "2023-11-30",
+      "estado": "gestionado",
+      "id": 3
     }
   ],
   "usuarios": [
