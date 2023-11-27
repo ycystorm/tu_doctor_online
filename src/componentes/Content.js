@@ -4,7 +4,11 @@ import APIInvoke from "../utils/APIInvoke";
 import swal from "sweetalert";
 
 export default function ContentA() {
+
   const [citas, setcitas] = useState([]);
+
+  
+  
 
   const cita = async () => {
     try {

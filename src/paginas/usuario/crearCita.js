@@ -23,6 +23,16 @@ const CrearCita = () => {
       ...citas,
       [e.target.name]: e.target.value,
     });
+    const fechaIngresada = new Date(e.target.value);
+    const fechaActual = new Date();
+  
+    if (fechaIngresada < fechaActual) {
+      // Display an alert message
+      alert("La fecha seleccionada no puede ser anterior a la fecha actual.");
+  
+      // Reset the input value to empty
+      e.target.value = "";
+    } 
   };
 
   useEffect(() => {
@@ -109,15 +119,15 @@ const CrearCita = () => {
     }
   };
 
+ 
+
   const onSubmit = (e) => {
     e.preventDefault();
     CrearCuenta();
   };
 
-  
-
   return (
-    <div class="hold-transition login-page">
+    <div class="hold-transition login-page" style={{ backgroundColor:"#e2e2e2"}}>
       <div className="login-box">
         <div className="login-logo">
           <Link to={"#"}>
@@ -129,8 +139,7 @@ const CrearCita = () => {
             <p className="login-box-msg">Ingresa los datos de la cita</p>
             <form onSubmit={onSubmit}>
               <div className="input-group mb-3">
-                <input
-                  type="text"
+              <select
                   className="form-control"
                   placeholder="Nombre del doctor"
                   id="Nombre"
@@ -138,7 +147,14 @@ const CrearCita = () => {
                   value={doctor}
                   onChange={onChange}
                   required
-                />
+                >
+                  <option >escoje tu doctor preferido</option>
+                  <option >Juan García</option>
+                  <option >Miguel Gómez</option>
+                  <option >Roberto López</option>
+                  <option >Ricardo Sánchez</option>
+                  <option >David Martínez</option>
+                </select>
                 <div className="input-group-append">
                   <div className="input-group-text">
                     <span className="fas fa-user" />
@@ -146,16 +162,21 @@ const CrearCita = () => {
                 </div>
               </div>
               <div className="input-group mb-3">
-                <input
-                  type="text"
+                <select
+                  name="cita"
                   className="form-control"
                   placeholder="tipo de cita"
-                  id="email"
-                  name="cita"
                   value={cita}
                   onChange={onChange}
                   required
-                />
+                >
+                  <option >escoje una cita</option>
+                  <option >médicas general</option>
+                  <option >citas con especialista</option>
+                  <option >citas de psicología</option>
+                  <option >citas de nutrición</option>
+                  <option >citas de fisioterapia</option>
+                </select>
                 <div className="input-group-append">
                   <div className="input-group-text">
                     <span className="fas fa-user" />

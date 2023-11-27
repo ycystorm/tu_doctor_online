@@ -44,7 +44,6 @@ export default function ContentA() {
     console.log(citaexistente)
     if (citaexistente) {
       const response = await APIInvoke.invokePUT(`/citas/${id}`,{ 
-      
       "estado": "gestionado"
     });
       const msg = "la cita se actualizo correcta mente";

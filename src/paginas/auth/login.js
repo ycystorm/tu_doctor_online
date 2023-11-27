@@ -15,6 +15,8 @@ const Login = () => {
 
   const { email, password } = usuario;
 
+  
+
   const onChange = (e) => {
       setUsuario({
           ...usuario,
@@ -83,7 +85,7 @@ const Login = () => {
           });
       }else {
         if (usuarioExistente.rol === 'usuario') {
-            navigate("/home");
+            navigate("/home", usuarioExistente.id);
         } else if(usuarioExistente.rol === 'administrador'){
           navigate("/menuA")
         } else {
@@ -99,7 +101,7 @@ const Login = () => {
       iniciarSesion();
   }
   return (
-    <div class="hold-transition login-page">
+    <div class="hold-transition login-page"  style={{ backgroundColor:"#e2e2e2"}}>
       <div className="login-box">
         <div className="login-logo">
           <Link to={"#"}>
@@ -110,7 +112,7 @@ const Login = () => {
           <div className="card-body login-card-body">
             <p className="login-box-msg">bienvenido a tu doctor online</p>
 
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit}  >
               <div className="input-group mb-3">
                 <input
                   type="email"

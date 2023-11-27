@@ -139,7 +139,7 @@ if (password !== confirmar) {
     }
 
     return (
-    <div class="hold-transition login-page"> 
+    <div class="hold-transition login-page" style={{ backgroundColor:"#e2e2e2"}}> 
         <div className="login-box">
         <div className="login-logo">
           <Link to={"#"}>

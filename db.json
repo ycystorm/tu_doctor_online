@@ -15,20 +15,28 @@
   ],
   "citas": [
     {
-      "doctor": "pepe",
-      "cita": "optometria",
-      "paciente": "pepe galindo",
-      "fecha": "2023-11-30",
-      "estado": "gestionado",
-      "id": 2
+      "doctor": "pedro fernandez",
+      "cita": "Examen",
+      "paciente": "jean carlo quiroga hernandez",
+      "fecha": "2023-11-25",
+      "estado": "pendiente",
+      "id": 4
     },
     {
-      "doctor": "luisa",
-      "cita": "optometria",
-      "paciente": "luisa fernanda",
-      "fecha": "2023-11-30",
-      "estado": "gestionado",
-      "id": 3
+      "doctor": "David Martínez",
+      "cita": "citas con especialista",
+      "paciente": "jean carlo quieroga hernandez",
+      "fecha": "2023-11-23",
+      "estado": "pendiente",
+      "id": 5
+    },
+    {
+      "doctor": "Roberto López",
+      "cita": "citas de fisioterapia",
+      "paciente": "jean carlo quiroga hernandez",
+      "fecha": "2023-11-25",
+      "estado": "pendiente",
+      "id": 6
     }
   ],
   "usuarios": [

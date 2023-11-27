@@ -139,7 +139,7 @@ if (password !== confirmar) {
     }
 
     return (
-    <div class="hold-transition login-page"> 
+    <div class="hold-transition login-page" style={{ backgroundColor:"#e2e2e2"}}> 
         <div className="login-box">
         <div className="login-logo">
           <Link to={"#"}>
@@ -219,7 +219,7 @@ if (password !== confirmar) {
               <button type="submit" to={"#"} className="btn btn-block btn-primary">
                  crear cuenta
               </button>
-              <Link to={"/"} className="btn btn-block btn-danger">
+              <Link to={"/Login"} className="btn btn-block btn-danger">
                  regresar al login 
               </Link>
             </div>
