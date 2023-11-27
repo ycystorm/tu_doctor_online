@@ -7,6 +7,7 @@ import Aside from "../componentes/aside";
 
 
 const home = () =>{
+    
     return(
         <div >
            <Header />

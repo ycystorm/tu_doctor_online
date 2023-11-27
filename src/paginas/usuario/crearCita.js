@@ -17,6 +17,15 @@ const CrearCita = () => {
   });
 
   const { doctor, cita, paciente, fecha } = citas;
+  const userId = localStorage.getItem("id");
+  const cargarUsuariosPorId = async () => {
+    try {
+      const response = await APIInvoke.invokeGET(`/Usuario?id=${userId}`);
+      setCita(response);
+    } catch (error) {
+      console.error("Error a cargar el usuario", error);
+    }
+  };
 
   const onChange = (e) => {
     setCita({
@@ -37,6 +46,7 @@ const CrearCita = () => {
 
   useEffect(() => {
     document.getElementById("Nombre").focus();
+    cargarUsuariosPorId();
   }, []);
 
   const CrearCuenta = async () => {
@@ -45,7 +55,7 @@ const CrearCita = () => {
       cita,
       paciente,
       fecha,
-      estado
+      estado,
     ) => {
       try {
         const response = await APIInvoke.invokeGET(
@@ -70,7 +80,8 @@ const CrearCita = () => {
         cita: citas.cita,
         paciente: citas.paciente,
         fecha: citas.fecha,
-        estado: citas.estado, // Hay que asegurarse que se envie bien al servidor
+        estado: citas.estado,
+        userId: userId // Hay que asegurarse que se envie bien al servidor
       };
       const response = await APIInvoke.invokePOST(`/citas`, data);
       const mensaje = response.msg;
@@ -114,6 +125,7 @@ const CrearCita = () => {
           paciente: "",
           fecha: "",
           estado: "pendiente",
+          userId:userId
         });
       }
     }

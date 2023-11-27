@@ -63,6 +63,9 @@ const Login = () => {
           });
       }else{
         const usuarioExistente = await verificarExistenciaUsuario(email, password);
+        const jwt= usuarioExistente.id;
+
+        localStorage.setItem('id', jwt);
         const response = await APIInvoke.invokeGET(
             `/Usuarios?email=${email}&password=${password}`
         );

@@ -6,13 +6,12 @@ import swal from "sweetalert";
 export default function ContentA() {
 
   const [citas, setcitas] = useState([]);
-
-  
-  
-
+  const userId = localStorage.getItem("id");
   const cita = async () => {
+    
     try {
-      var response = await APIInvoke.invokeGET(`/citas`);
+      
+      var response = await APIInvoke.invokeGET(`/citas?userId=${userId}`);
       console.log("Respuesta de la API:", response);
 
       if (Array.isArray(response) && response.length > 0) {
@@ -30,8 +29,10 @@ export default function ContentA() {
   }, []);
 
   const eliminarProyecto = async (e, id) => {
+    
     e.preventDefault();
     const verificarExistenciaproyecto = async (id) => {
+      const userId = localStorage.getItem("id");
       try {
         const response = await APIInvoke.invokeGET(`/citas?id=${id}`);
         if (response && response.length > 0) {
@@ -44,10 +45,10 @@ export default function ContentA() {
       }
     };
 
-    const citaexistente = await verificarExistenciaproyecto(id);
+    const citaexistente = await verificarExistenciaproyecto(userId);
 
     if (citaexistente) {
-      const response = await APIInvoke.invokeDELETE(`/citas/${id}`);
+      const response = await APIInvoke.invokeDELETE(`/citas/${userId}`);
       const msg = "cita eliminada correctamente";
       new swal({
         title: "Informacion",
@@ -97,7 +98,7 @@ export default function ContentA() {
           </div>
         </div>
 
-        <section className="content" style={{ width: 1550 }}>
+        <section className="content" style={{ width: 2350 }}>
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-8">
