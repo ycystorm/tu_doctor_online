@@ -16,21 +16,21 @@
   "citas": [
     {
       "doctor": "Miguel Gómez",
-      "cita": "citas de psicología",
-      "paciente": "sfsdfsd",
+      "cita": "citas con especialista",
+      "paciente": "jean carlo quieroga hernandez",
       "fecha": "2023-11-29",
       "estado": "gestionado",
-      "userId": "2",
-      "id": 1
+      "userId": "1",
+      "id": 4
     },
     {
       "doctor": "Miguel Gómez",
       "cita": "citas de psicología",
-      "paciente": "jean carlo quiroga hernandez",
-      "fecha": "2023-11-29",
+      "paciente": "pepito fernandez",
+      "fecha": "2023-11-30",
       "estado": "gestionado",
-      "userId": "1",
-      "id": 3
+      "userId": "2",
+      "id": 5
     }
   ],
   "usuarios": [

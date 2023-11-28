@@ -116,7 +116,7 @@ export default function ContentA() {
           </div>
         </div>
 
-        <section className="content" style={{ width: 2350 }}>
+        <section className="content" style={{ maxWidth:2350 , minWidth:1550 }}>
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-8">
